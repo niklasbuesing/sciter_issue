@@ -1,9 +1,6 @@
 use glfw::{Context, WindowHint};
+use opengl as gl;
 use sciter::windowless::{handle_message, Message};
-
-mod gl {
-    include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
-}
 
 fn main() {
     #[cfg(target_os = "linux")]
@@ -68,7 +65,7 @@ fn main() {
         </style>
       </head>
       <body>
-        <h1.small>Small Text</h1>
+        <h1.small.white>Small Text</h1>
         <h1.big>Big Text</h1>
         <h1.small.white>ABCDEFGHIJKLMNOPQRSTUVWXYZ</h1>
       </body>
@@ -80,12 +77,7 @@ fn main() {
 
     // Create context to render sciter with
     let (mut sciter_context, _) = window
-        .create_shared(
-            window_width,
-            window_height,
-            "",
-            glfw::WindowMode::Windowed,
-        )
+        .create_shared(window_width, window_height, "", glfw::WindowMode::Windowed)
         .expect("Failed to create GLFW window");
 
     gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
@@ -142,7 +134,6 @@ fn main() {
         handle_message(window_handle, Message::Redraw);
         sciter_frame_buffer.unbind();
         window.make_current();
-
 
         // Now back in the window context, draw the texture containing sciter
         unsafe {

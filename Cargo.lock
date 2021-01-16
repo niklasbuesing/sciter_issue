@@ -134,6 +134,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "opengl"
+version = "0.1.0"
+dependencies = [
+ "gl_generator",
+]
+
+[[package]]
 name = "raw-window-handle"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -158,8 +165,8 @@ dependencies = [
 name = "sciter_issue"
 version = "0.1.0"
 dependencies = [
- "gl_generator",
  "glfw",
+ "opengl",
  "sciter-rs",
 ]
 
